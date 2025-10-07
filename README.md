@@ -1,60 +1,80 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Dragones Maps - Inicio</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="InicioStyle.css" />
-    <link rel="icon" type="image/x-icon" href="Image/Icono.ico">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DRAGONES MAPS</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="Image/Icono.ico">
 </head>
 <body>
-    <header class="top-bar">
+
+<header class="top-bar">
   <div class="top-left">
     <img src="https://img.icons8.com/?size=100&id=S5biqohaDgd1&format=png&color=000000"
          alt="Menú" class="menu-icon" onclick="togglePanel()" />
     <span class="top-title">DRAGONES MAPS</span>
   </div>
 
-</header>
-    <!-- Barra lateral reutilizada -->
-    <div class="panel-lateral activo">
-    <div class="nav-item">
-    <a href="index.html">
-        <img src="https://img.icons8.com/?size=100&id=3723&format=png&color=000000" alt="Mapa" />
-    </a>
-    </div>
-    <div class="nav-item">
-        <img src="https://img.icons8.com/?size=100&id=23&format=png&color=000000" alt="Agenda" />
-    </div>
-    </div>
-<body>
-    
-<div class="inicio-container">
-    <!-- Fila: dragón a la izquierda, y todo lo demás a la derecha -->
-    <div class="fila-principal">
-        <img src="Image/DragonLogo.JPG" alt="Logo del dragón" class="logo-dragones" />
-
-    <div class="contenido-lateral">
-        <img src="Image/DragonesMaps.JPG" alt="Logo del dragón" class="logo-dragonesString" />
-
-        <div class="search-box">
-        <input type="text" placeholder="INGRESA EL EDIFICIO..." />
-        <img src="https://img.icons8.com/?size=100&id=3723&format=png&color=000000" alt="Buscar" />
-    </div>
-
-        <div class="botones">
-        <a href="InicioInciarSesion.html">
-            <button class="boton-verde">INICIAR SESIÓN</button>
-        </a>
-        <a href="InicioCrearCuenta.html">
-            <button class="boton-verde">CREAR CUENTA</button>
-        </a>
-        
-        </div>
-    </div>
-    </div>
+  <div class="search-right">
+<div class="busqueda-container">
+  <div class="busqueda-wrapper">
+    <input type="text" id="busqueda" placeholder="Buscar edificio..." onkeyup="filtrarSugerencias(event)" autocomplete="off">
+    <img src="https://img.icons8.com/?size=100&id=3723&format=png&color=000000" alt="Buscar" class="icono-busqueda" />
+  </div>
+  <div id="sugerencias" class="sugerencias"></div>
 </div>
+  <a href="Inicio.html" class="icono-perfil-link">
+    <img src="https://img.icons8.com/?size=100&id=0PXqKKGn88m8&format=png&color=000000" alt="Perfil" class="icono-perfil" />
+  </a>
+  </div>
+</header>
+
+<!-- Panel Lateral -->
+<div id="panel" class="panel-lateral">
+  <div class="nav-item">
+    <img src="https://img.icons8.com/?size=100&id=3723&format=png&color=000000" alt="">
+    <span>Marcadores</span>
+  </div>
+  <div class="nav-item">
+    <a href="calendario.html">
+      <img src="https://img.icons8.com/?size=100&id=23&format=png&color=000000" alt="">
+      <span>Calendario</span>
+    </a>
+  </div>
+</div>
+
+<!-- Mapa y Controles -->
+<div id="overlay" class="overlay" onclick="togglePanel()"></div>
+<div id="map"></div>
+
+<div class="zoom-controls">
+  <button onclick="map.zoomIn()">+</button>
+  <button onclick="map.zoomOut()">−</button>
+</div>
+
+<!-- Panorama -->
+<div class="iframe-container">
+<iframe id="panorama" allowfullscreen="true" allow="accelerometer; magnetometer; gyroscope"
+        src="https://panoraven.com/es/embed/oxnUHagvOJ">
+</iframe>
+
+</div>
+
+<!-- Info del Edificio (solo uno, centralizado) -->
+<div id="info-edificio" style="display: none;">
+  <img src="" alt="Imagen del edificio" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px;">
+  <div class="texto">
+    <p></p>
+  </div>
+  <iframe width="100%" height="200" style="margin-top: 10px; border-radius: 8px;" allowfullscreen></iframe>
+  <button onclick="cerrarInfo()" >Cerrar</button>
+</div>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="script.js"></script>
+
 </body>
 </html>
